@@ -1,0 +1,32 @@
+<template name="Post">
+    <div class="card post-container">
+        <div class="card-header">
+            Posted at {{time}} by {{username}}
+        </div>
+        <div class="card-body content">
+            <!-- <img class="img-fluid" src="{{imageUrl}}"> -->
+            <div>{{text}}</div>
+            <div>{{likeCounter}} likes, {{commentInfo.count}} comments</div>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-link comment-toggle">Comment</button>
+            {{#if userLiked}}
+                <button class="btn btn-link unlike-toggle" href="#">Unlike</button>
+            {{else}}
+                <button class="btn btn-link like-toggle" href="#">Like</button>
+            {{/if}}
+        </div>
+
+        {{#if commentMode}}
+        <div class="comments-container">
+            <div>
+                {{#each commentInfo.comments}}
+                    <div>{{> Comment}}</div>
+                {{/each}}
+                {{> NewComment post=this}}
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</template>

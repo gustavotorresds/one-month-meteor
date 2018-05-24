@@ -1,0 +1,11 @@
+<template name="NewPost">
+    {{> quickForm collection="Posts" id="insertPostForm" type="insert" class="new-post-form" omitFields="author,createdAt,comments,likes"}}
+
+    {{#autoForm id="insertForm" type="insert" collection="Posts"}}
+        {{> afQuickField name="text"}}
+        {{> afQuickField name="fileId" type="cfs-file" collection="images"}}
+        <button type="submit">Submit</button>
+    {{/autoForm}}
+
+    <!-- <input type="file" name="photoFile" class="myFileInput"> -->
+</template>
