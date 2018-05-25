@@ -1,3 +1,6 @@
+/*
+ * TODO: subscription doesn't make sense all over. Fix it throughout the app.
+ */
 // Meteor.subscribe('posts');
 // Meteor.subscribe('likes');
 Template.Timeline.onCreated(function() {
@@ -10,6 +13,6 @@ Template.Timeline.onCreated(function() {
 
 Template.Timeline.helpers({
     posts: function() {
-        return Posts.find({});
+        return Posts.find({}).fetch().reverse();
     },
 });

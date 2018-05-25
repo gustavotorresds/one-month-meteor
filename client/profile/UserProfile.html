@@ -1,0 +1,14 @@
+<template name="UserProfile">
+    <h1>User Profile</h1>
+    <div>{{user.username}}</div>
+    <div>{{user.profile.city}}</div>
+    <div class="container">
+        <div class="row">
+            {{#each posts}}
+                <div class="col-lg-4 col-12">
+                    {{> Post}}
+                </div>
+            {{/each}}        
+        </div>
+    </div>
+</template>

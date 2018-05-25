@@ -1,7 +1,7 @@
 <template name="Post">
     <div class="card post-container">
         <div class="card-header">
-            <span>Posted at {{time}} by {{username}}</span>
+            <span>Posted at {{time}} by <a href="/users/{{author}}">{{username}}</a></span>
             <button class="btn btn-link remove-button">Remove</button>
         </div>
         <div class="card-body content">

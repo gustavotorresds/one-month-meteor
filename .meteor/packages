@@ -31,5 +31,7 @@ msavin:mongol
 session
 cfs:standard-packages
 cfs:gridfs
-aldeed:collection2@3.0.0
+useraccounts:core
+useraccounts:bootstrap
 aldeed:autoform
+aldeed:collection2
