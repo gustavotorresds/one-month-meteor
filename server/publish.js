@@ -13,11 +13,6 @@ Meteor.publish('comments', function() {
     return comments;
 });
 
-Meteor.publish('likes', function() {
-    var likes = Likes.find({});
-    return likes;
-});
-
 Meteor.publish('images', function() {
     var images = Images.find({});
     return images;

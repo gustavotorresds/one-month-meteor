@@ -1,5 +1,4 @@
 Meteor.subscribe('posts');
-Meteor.subscribe('likes');
 Meteor.subscribe('users');
 Meteor.subscribe('images');
 
@@ -8,9 +7,9 @@ Template.Post.onCreated(function() {
 });
 
 Template.Post.helpers({
-    username: function() {
-        var username = Meteor.users.findOne({_id: this.author}).username;
-        return username;
+    authorUsername: function() {
+        var authorUsername = Meteor.users.findOne({_id: this.author}).username;
+        return authorUsername;
     },
     time: function() {
         var post = this;
@@ -29,11 +28,11 @@ Template.Post.helpers({
         };
     },
     likeCounter: function() {
-        return this.likes;
+        return this.likes.length;
     },
     userLiked: function() {
-        var like = Likes.findOne({post: this._id, author: Meteor.userId()});
-        return !!like;
+        var like = this.likes.indexOf(Meteor.userId());
+        return (like !== -1);
     },
     imageInfo: function() {
         var image = Images.findOne({_id: this.imageId});
@@ -46,10 +45,10 @@ Template.Post.events({
         template.commentMode.set(!template.commentMode.get());
     },
     'click .like-toggle': function(event, template) {
-        Meteor.call('like', this._id, this.likes);
+        Meteor.call('like', this._id);
     },
     'click .unlike-toggle': function(event, template) {
-        Meteor.call('unlike', this._id, this.likes);
+        Meteor.call('unlike', this._id);
     },
     'click .remove-button': function(event, template) {
         Meteor.call('deletePost', this._id);

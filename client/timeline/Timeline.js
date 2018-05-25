@@ -7,7 +7,6 @@ Template.Timeline.onCreated(function() {
     var self = this;
     self.autorun(function() {
         self.subscribe('posts');
-        self.subscribe('likes');
     });
 });
 
