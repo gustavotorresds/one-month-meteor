@@ -9,8 +9,7 @@ Template.Post.onCreated(function() {
 
 Template.Post.helpers({
     username: function() {
-        var post = this;
-        var username = Meteor.users.findOne({_id: post.author}).username;
+        var username = Meteor.users.findOne({_id: this.author}).username;
         return username;
     },
     time: function() {
@@ -35,6 +34,10 @@ Template.Post.helpers({
     userLiked: function() {
         var like = Likes.findOne({post: this._id, author: Meteor.userId()});
         return !!like;
+    },
+    imageInfo: function() {
+        var image = Images.findOne({_id: this.imageId});
+        return image;
     }
 });
 
@@ -47,5 +50,8 @@ Template.Post.events({
     },
     'click .unlike-toggle': function(event, template) {
         Meteor.call('unlike', this._id, this.likes);
+    },
+    'click .remove-button': function(event, template) {
+        Meteor.call('deletePost', this._id);
     }
 });

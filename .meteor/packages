@@ -27,11 +27,9 @@ accounts-password
 msavin:jetsetter
 zimme:active-route
 gwendall:auth-client-callbacks
-aldeed:collection2@3.0.0
-aldeed:autoform
-aldeed:simple-schema
 msavin:mongol
 session
 cfs:standard-packages
 cfs:gridfs
-cfs:autoform
+aldeed:collection2@3.0.0
+aldeed:autoform

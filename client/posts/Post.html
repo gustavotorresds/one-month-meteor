@@ -1,10 +1,11 @@
 <template name="Post">
     <div class="card post-container">
         <div class="card-header">
-            Posted at {{time}} by {{username}}
+            <span>Posted at {{time}} by {{username}}</span>
+            <button class="btn btn-link remove-button">Remove</button>
         </div>
         <div class="card-body content">
-            <!-- <img class="img-fluid" src="{{imageUrl}}"> -->
+            <img class="img-fluid" src="{{imageInfo.url}}">
             <div>{{text}}</div>
             <div>{{likeCounter}} likes, {{commentInfo.count}} comments</div>
         </div>

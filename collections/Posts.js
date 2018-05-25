@@ -12,18 +12,36 @@ Posts.allow({
     }
 });
 
+Image = new SimpleSchema({
+    id: {
+        type: String,
+        label: "ID"
+    },
+    imageURL: {
+        type: String,
+        label: "URL"
+    }
+});
+
 PostSchema = new SimpleSchema({
     text: {
         type: String,
         label: "Text"
     },
-    fileId: {
-        type: String
-    },
-    // imageUrl: {
+    // picture: {
     //     type: String,
-    //     label: "Image URL"
+    //     autoform: {
+    //         afFieldInput: {
+    //             type: "fileUpload",
+    //             collection: "Images"
+    //         }
+    //     },
+    //     optional: true
     // },
+    imageId: {
+        type: String,
+        label: "Image ID"
+    },
     author: {
         type: String,
         label: "Author",
@@ -47,3 +65,16 @@ PostSchema = new SimpleSchema({
 });
 
 Posts.attachSchema(PostSchema);
+
+Meteor.methods({
+    insertPost: function(text, imageId) {
+        Posts.insert({
+            text: text,
+            imageId: imageId
+        });
+    },
+    // TODO: remove image associated with the post.
+    deletePost: function(postId) {
+        Posts.remove(postId);
+    }
+});
