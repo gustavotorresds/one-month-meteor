@@ -34,9 +34,13 @@ Template.Post.helpers({
         var like = this.likes.indexOf(Meteor.userId());
         return (like !== -1);
     },
+    // Refactor. It'd be best if this was inside post.
     imageInfo: function() {
         var image = Images.findOne({_id: this.imageId});
         return image;
+    },
+    belongsToUser: function() {
+        return this.author === Meteor.userId();
     }
 });
 

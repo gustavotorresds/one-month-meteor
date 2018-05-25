@@ -1,4 +1,4 @@
-<template name="Timeline">
+<!-- <template name="Timeline">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -7,6 +7,24 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-6">
+                {{> NewPost}}
+
+                {{#each posts}}
+                    {{> Post}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template> -->
+<template name="Timeline">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">TIMELINE</h1>
+            </div>
+        </div>
+        <div class="row align-center">
+            <div class="col xl6 l6 m6 s6">
                 {{> NewPost}}
 
                 {{#each posts}}

@@ -14,33 +14,41 @@ Requests.allow({
 RequestSchema = new SimpleSchema({
     from: {
         type: String,
-        label: "From",
-        autoValue: function() {
-            return this.userId
-        }
+        label: "From"
     },
     to: {
         type: String,
-        label: "To",
-    },
-    hasAnswer: {
-        type: Boolean,
-        label: "Has Answer",
-        defaultValue: false,
-        optional: true
-    },
-    accepted: {
-        type: Boolean,
-        label: "Accepted",
-        defaultValue: false,
-        optional: true
+        label: "To"
     }
 });
 
-Requests.attachSchema(CommentSchema);
+Requests.attachSchema(RequestSchema);
+
+function respondFriendship(request, accept) {
+    console.log('RESPONDING');
+    if(accept) {
+        Meteor.users.update(request.to, {
+            $addToSet: {
+                'profile.friends': request.from
+            }
+        });
+        Meteor.users.update(request.from, {
+            $addToSet: {
+                'profile.friends': request.to
+            }
+        });
+    }
+    Requests.remove(request._id);
+}
 
 Meteor.methods({
     requestFriendship: function(userId) {
-        var newComment = Requests.insert({text: commentText, post: postId});
+        Requests.insert({from: this.userId, to: userId});
+    },
+    acceptFriendship: function(request) {
+        respondFriendship(request, true);
+    },
+    rejectFriendship: function(request) {
+        respondFriendship(request, false);
     }
 });

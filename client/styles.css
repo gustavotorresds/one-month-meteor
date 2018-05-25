@@ -2,3 +2,18 @@
 .post-container {
     margin-bottom: 20px;
 }
+
+.grayscale {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.sepia {
+  -webkit-filter: sepia(1);
+  filter: sepia(1);
+}
+
+.bright {
+  -webkit-filter: brightness(3);
+  filter: brightness(3);
+}

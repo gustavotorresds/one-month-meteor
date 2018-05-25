@@ -1,5 +1,9 @@
 Meteor.publish('posts', function() {
-    var posts = Posts.find({});
+    var user = Meteor.users.findOne({_id: this.userId});
+    var postAuthors = user.profile.friends;
+    postAuthors.push(this.userId);
+
+    var posts = Posts.find({author: {$in: postAuthors}});
     return posts;
 });
 
@@ -16,4 +20,9 @@ Meteor.publish('comments', function() {
 Meteor.publish('images', function() {
     var images = Images.find({});
     return images;
+});
+
+Meteor.publish('requests', function() {
+    var requests = Requests.find({});
+    return requests;
 });

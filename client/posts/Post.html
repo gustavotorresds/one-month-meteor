@@ -2,10 +2,12 @@
     <div class="card post-container">
         <div class="card-header">
             <span>Posted at {{time}} by <a href="/users/{{author}}">{{authorUsername}}</a></span>
-            <button class="btn btn-link remove-button">Remove</button>
+            {{#if belongsToUser}}
+                <button class="btn btn-link remove-button">Remove</button>
+            {{/if}}
         </div>
         <div class="card-body content">
-            <img class="img-fluid" src="{{imageInfo.url}}">
+            <img class="img-fluid materialboxed {{filter}}" width="100%" src="{{imageInfo.url}}">
             <div>{{text}}</div>
             <div>{{likeCounter}} likes, {{commentInfo.count}} comments</div>
         </div>

@@ -11,14 +11,16 @@ Template.NewPost.events({
     'submit .newPost': function(event, template) {
         event.preventDefault();
         var text = event.target.text.value;
+        var filter = document.querySelector('input[name=filter]:checked').value;
         var file = template.file.get();
+
         Images.insert(file, function (err, fileObj) {
           if (err){
             console.log('ERRO');
              // handle error
           } else {
              // handle success depending what you need to do
-            Meteor.call('insertPost', text, fileObj._id);
+            Meteor.call('insertPost', text, fileObj._id, filter);
           }
         });
      

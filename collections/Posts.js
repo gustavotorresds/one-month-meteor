@@ -5,10 +5,13 @@ Posts = new Mongo.Collection('posts');
 
 Posts.allow({
     insert: function(userId, doc) {
-        return !!userId;
+        return userId === doc.author;
     },
     update: function(userId, doc) {
-        return !!userId;
+        return userId === doc.author;
+    },
+    remove: function(userId, doc) {
+        return userId === doc.author;
     }
 });
 
@@ -16,6 +19,12 @@ PostSchema = new SimpleSchema({
     text: {
         type: String,
         label: "Text"
+    },
+    filter: {
+        type: String,
+        label: "Text",
+        optional: true,
+        defaultValue: "none"
     },
     imageId: {
         type: String,
@@ -46,11 +55,12 @@ PostSchema = new SimpleSchema({
 Posts.attachSchema(PostSchema);
 
 Meteor.methods({
-    insertPost: function(text, imageId) {
+    insertPost: function(text, imageId, filter) {
         Posts.insert({
             text: text,
             imageId: imageId,
-            author: this.userId
+            author: this.userId,
+            filter: filter
         });
     },
     // TODO: remove image associated with the post.
