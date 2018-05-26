@@ -1,10 +1,13 @@
 Meteor.publish('posts', function() {
     var user = Meteor.users.findOne({_id: this.userId});
-    var postAuthors = user.profile.friends;
-    postAuthors.push(this.userId);
 
-    var posts = Posts.find({author: {$in: postAuthors}});
-    return posts;
+    if(user) {
+        var postAuthors = (user.profile.friends ? user.profile.friends : []);
+        postAuthors.push(this.userId);
+
+        var posts = Posts.find({author: {$in: postAuthors}});
+        return posts;
+    }
 });
 
 Meteor.publish('users', function() {

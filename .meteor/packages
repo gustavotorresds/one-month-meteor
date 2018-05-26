@@ -19,7 +19,6 @@ shell-server@0.3.1            # Server-side component of the `meteor shell` comm
 
 kadira:flow-router
 kadira:blaze-layout
-fortawesome:fontawesome
 spiderable
 raix:handlebar-helpers
 accounts-ui
@@ -37,3 +36,4 @@ aldeed:autoform
 aldeed:collection2
 materialize:materialize
 planettraining:material-design-icons-font
+useraccounts:flow-routing

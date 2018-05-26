@@ -46,3 +46,14 @@ AccountsTemplates.addFields([
         required: true
     }
 ]);
+
+AccountsTemplates.configure({
+    defaultLayoutType: 'blaze',
+    defaultLayout: 'MainLayout',
+    defaultLayoutRegions: {
+        nav: 'Header'
+    },
+    defaultContentRegion: 'main'
+});
+
+AccountsTemplates.configureRoute('signIn');
