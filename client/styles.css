@@ -1,4 +1,10 @@
 /* CSS declarations go here */
+a.username {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
 .post-container {
     margin-bottom: 20px;
 }

@@ -2,7 +2,7 @@
     <div class="card">        
         <div class="card-content">
             <div class="card-header">
-                <span>Posted at {{time}} by <a href="/users/{{author}}">{{authorUsername}}</a></span>
+                <span>Posted on {{time}} by <a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
                 {{#if belongsToUser}}
                     <button class="btn-flat remove-button right">Remove</button>
                 {{/if}}
