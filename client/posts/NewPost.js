@@ -1,7 +1,14 @@
 Meteor.subscribe('images');
 
 Template.NewPost.onCreated(function() {
-    this.file = new ReactiveVar(null);
+    this.imageId = new ReactiveVar(null);
+});
+
+Template.NewPost.helpers({
+  getImage: function() {
+    var imageId = Template.instance().imageId.get();
+    return (imageId ? Images.findOne({_id: imageId}) : {});
+  }
 });
 
 /*
@@ -12,22 +19,38 @@ Template.NewPost.events({
         event.preventDefault();
         var text = event.target.text.value;
         var filter = document.querySelector('input[name=filter]:checked').value;
-        var file = template.file.get();
+        var imageId = template.imageId.get();
 
-        Images.insert(file, function (err, fileObj) {
-          if (err){
-            console.log('ERRO');
-             // handle error
-          } else {
-             // handle success depending what you need to do
-            Meteor.call('insertPost', text, fileObj._id, filter);
-          }
-        });
+        Meteor.call('insertPost', text, imageId, filter);
+
+        event.target.text.value = '';
+        event.target.text.value = '';
+
+        template.imageId.set(null);
      
     },
     'change .myFileInput': function(event, template) {
-        FS.Utility.eachFile(event, function(file) {
-            template.file.set(file);
-        });
+      FS.Utility.eachFile(event, function(file) {
+          var imageId = template.imageId.get();
+          if(imageId) {
+            Images.remove(imageId);
+          }
+          Images.insert(file, function (err, fileObj) {
+            if (err) {
+              // TODO: handle error appropriately
+              console.log('ERRO');
+            } else {
+              template.imageId.set(fileObj._id);
+            }
+          });
+      });
+    },
+    'click .filterLabel': function(event, template) {
+      // TODO: refactor
+      var filter = document.querySelector('input[name=filter]:checked').value;
+      var img = $('#displayPostImage');
+      var currentClass = img.attr('class');
+      img.removeClass(currentClass);
+      img.addClass('responsive-img ' + filter);
     }
 });

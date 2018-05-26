@@ -3,10 +3,6 @@
  * TODO: if we decide to go with useracconutns package, remove this commented
  * out code bellow.
  */
-// Accounts.ui.config({
-//   passwordSignupFields: 'USERNAME_AND_EMAIL',
-// });
-
 var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 

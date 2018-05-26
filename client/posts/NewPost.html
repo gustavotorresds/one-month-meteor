@@ -1,18 +1,7 @@
 <template name="NewPost">
-    <!-- {{> quickForm collection="Posts" id="insertPostForm" type="insert" class="new-post-form" omitFields="author,createdAt,comments,likes"}} -->
-
-    <!-- {{#autoForm id="insertForm" type="insert" collection="Posts"}}
-        {{> afQuickField name="text"}}
-        {{> afQuickField name="picture"}}
-        <button type="submit">Submit</button>
-    {{/autoForm}} -->
     <form action="#" id="newPost" class="newPost">
-        <!-- <input type="text" name="text"> -->
-        <!-- <input type="file" name="image" class="myFileInput"> -->
-
         <div class="input-field">
-            <input name="text" type="text" class="validate" placeholder="What's on your mind?">
-            <!-- <label for="text">Type a Caption</label> -->
+            <input name="text" type="text" class="validate" placeholder="What's on your mind?" autocomplete="off">
         </div>
 
         <div class="file-field input-field">
@@ -25,37 +14,36 @@
           </div>
         </div>
 
-        <p>
-          <label for="grayButton">
-            <input id="grayButton" name="filter" type="radio" value="grayscale" />
-            <span>Grayscale</span>
-          </label>
-        </p>
-        <p>
-          <label for="sepiaButton">
-            <input id="sepiaButton" name="filter" type="radio" value="sepia" />
-            <span>Sepia</span>
-          </label>
-        </p>
-        <p>
-          <label for="brightButton">
-            <input id="brightButton" name="filter" type="radio" value="bright" />
-            <span>Bright</span>
-          </label>
-        </p>
-        <p>
-          <label for="noneButton">
-            <input id="noneButton" name="filter" type="radio" value="none" checked />
-            <span>None</span>
-          </label>
-        </p>
+        <div class="row">
+          <div class="col l3">
+            <label for="grayButton" class="filterLabel clickable">
+              <input id="grayButton" name="filter" type="radio" value="grayscale" />
+              <img class="responsive-img grayscale" src="{{getImage.url}}">
+            </label>
+          </div>  
+          <div class="col l3">
+            <label for="sepiaButton" class="filterLabel clickable">
+              <input id="sepiaButton" name="filter" type="radio" value="sepia" />
+              <img class="responsive-img sepia" src="{{getImage.url}}">
+            </label>
+          </div>
+          <div class="col l3">
+            <label for="brightButton" class="filterLabel clickable">
+              <input id="brightButton" name="filter" type="radio" value="bright" />
+              <img class="responsive-img bright" src="{{getImage.url}}">
+            </label>
+          </div>
+          <div class="col l3">
+            <label for="noneButton" class="filterLabel clickable">
+              <input id="noneButton" name="filter" type="radio" value="none" checked />
+              <img class="responsive-img none" src="{{getImage.url}}">
+            </label>
+          </div>
+        </div>
 
-        <!-- <div>
-            <input type="radio" name="filter" > Grayscale<br>
-            <input type="radio" name="filter" > Sepia<br>
-            <input type="radio" name="filter" > Bright<br>
-            <input type="radio" name="filter"  checked> None
-        </div> -->
+        <div>
+          <img id="displayPostImage" class="responsive-img {{getFilter}}" src="{{getImage.url}}">
+        </div>
 
         <input type="submit" name="submit" class="btn">
     </form>

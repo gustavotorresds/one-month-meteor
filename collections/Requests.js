@@ -25,7 +25,6 @@ RequestSchema = new SimpleSchema({
 Requests.attachSchema(RequestSchema);
 
 function respondFriendship(request, accept) {
-    console.log('RESPONDING');
     if(accept) {
         Meteor.users.update(request.to, {
             $addToSet: {

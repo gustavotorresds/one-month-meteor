@@ -1,3 +1,8 @@
 <template name="Search">
-    <input type="text" name="search" placeholder="SEARCH ME">
+    {{#if currentUser}}
+        <input class="form-control typeahead" name="user-search" type="text"
+           placeholder="Search for friends"
+           autocomplete="off" spellcheck="off"
+           data-source="items" data-select="selected"/>
+    {{/if}}
 </template>

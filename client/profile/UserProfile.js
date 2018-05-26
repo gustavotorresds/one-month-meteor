@@ -1,16 +1,10 @@
 // TODO: should have a way to get all friendshi/request info at start. Code is
 // currently quite shitty.
-
-var profileId;
 var requestFrom;
 var requestTo;
 
 Meteor.subscribe('requests');
 Meteor.subscribe('users');
-
-Template.UserProfile.onCreated(function() {
-    profileId = FlowRouter.getParam('id');
-});
 
 /*
  * TODO: custom user info seems to be store under .profile, which might
@@ -20,24 +14,30 @@ Template.UserProfile.onCreated(function() {
  */
 Template.UserProfile.helpers({
     user: function() {
+        var profileId = FlowRouter.getParam('id');
         var user = Meteor.users.findOne({_id: profileId});
         return user;
     },
     posts: function() {
+        var profileId = FlowRouter.getParam('id');
         return Posts.find({author: profileId})
     },
     notSelf: function() {
+        var profileId = FlowRouter.getParam('id');
         return profileId !== Meteor.userId();
     },
     hasRequest: function() {
+        var profileId = FlowRouter.getParam('id');
         requestTo = Requests.findOne({from: profileId, to: Meteor.userId()});
         return !!requestTo;
     },
     hasRequested: function() {
+        var profileId = FlowRouter.getParam('id');
         requestFrom = Requests.findOne({from: Meteor.userId(), to: profileId});
         return !!requestFrom;
     },
     notFriends: function() {
+        var profileId = FlowRouter.getParam('id');
         var friends = Meteor.users.findOne({_id: Meteor.userId()}).profile.friends;
         if(friends) {
             return friends.indexOf(profileId) === -1;
@@ -48,17 +48,21 @@ Template.UserProfile.helpers({
 
 Template.UserProfile.events({
     'click .add': function(event, template) {
+        var profileId = FlowRouter.getParam('id');
         Meteor.call('requestFriendship', profileId);
     },
     'click .accept': function(event, template) {
+        var profileId = FlowRouter.getParam('id');
         requestTo = Requests.findOne({from: profileId, to: Meteor.userId()});
         Meteor.call('acceptFriendship', requestTo);
     },
     'click .reject': function(event, template) {
+        var profileId = FlowRouter.getParam('id');
         requestTo = Requests.findOne({from: profileId, to: Meteor.userId()});
         Meteor.call('rejectFriendship', requestTo);
     },
     'click .delete': function(event, template) {
+        var profileId = FlowRouter.getParam('id');
         requestFrom = Requests.findOne({from: Meteor.userId(), to: profileId});
         Meteor.call('rejectFriendship', requestFrom);
     },
