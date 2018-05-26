@@ -17,3 +17,7 @@
   -webkit-filter: brightness(3);
   filter: brightness(3);
 }
+
+.clickable {
+    cursor: pointer;
+}

@@ -6,18 +6,58 @@
         {{> afQuickField name="picture"}}
         <button type="submit">Submit</button>
     {{/autoForm}} -->
-    <form id="newPost" class="newPost">
-        <input type="text" name="text">
-        <input type="file" name="image" class="myFileInput">
+    <form action="#" id="newPost" class="newPost">
+        <!-- <input type="text" name="text"> -->
+        <!-- <input type="file" name="image" class="myFileInput"> -->
 
-        <div>
-            <input type="radio" name="filter" value="grayscale"> Grayscale<br>
-            <input type="radio" name="filter" value="sepia"> Sepia<br>
-            <input type="radio" name="filter" value="bright"> Bright<br>
-            <input type="radio" name="filter" value="none" checked> None
+        <div class="input-field">
+            <input name="text" type="text" class="validate">
+            <label for="text">Type a Caption</label>
         </div>
 
-        <input type="submit" name="submit">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file" name="image" class="myFileInput">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+
+        <p>
+          <label for="grayButton">
+            <input id="grayButton" name="filter" type="radio" value="grayscale" />
+            <span>Grayscale</span>
+          </label>
+        </p>
+        <p>
+          <label for="sepiaButton">
+            <input id="sepiaButton" name="filter" type="radio" value="sepia" />
+            <span>Sepia</span>
+          </label>
+        </p>
+        <p>
+          <label for="brightButton">
+            <input id="brightButton" name="filter" type="radio" value="bright" />
+            <span>Bright</span>
+          </label>
+        </p>
+        <p>
+          <label for="noneButton">
+            <input id="noneButton" name="filter" type="radio" value="none" checked />
+            <span>None</span>
+          </label>
+        </p>
+
+        <!-- <div>
+            <input type="radio" name="filter" > Grayscale<br>
+            <input type="radio" name="filter" > Sepia<br>
+            <input type="radio" name="filter" > Bright<br>
+            <input type="radio" name="filter"  checked> None
+        </div> -->
+
+        <input type="submit" name="submit" class="btn">
     </form>
     
 </template>

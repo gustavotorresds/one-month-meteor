@@ -32,7 +32,8 @@ session
 cfs:standard-packages
 cfs:gridfs
 useraccounts:core
-useraccounts:bootstrap
+useraccounts:materialize
 aldeed:autoform
 aldeed:collection2
 materialize:materialize
+planettraining:material-design-icons-font

@@ -1,31 +1,33 @@
 <template name="UserProfile">
-    <h1>User Profile</h1>
-    <div><b>Username:</b> {{user.username}}</div>
-    <div><b>City:</b> {{user.profile.city}}</div>
-    <div>
-        <b>Friends: </b>
-        {{#each user.profile.friends}}
-            {{this}}
-        {{/each}}
-    </div>
-
-    {{#if notSelf}}
-        {{#if notFriends}}
-            {{#if hasRequest}}
-                <button class="btn btn-primary accept">Accept</button>
-                <button class="btn btn-primary reject">Reject</button>
-            {{else if hasRequested}}
-                <button class="btn btn-primary delete">Delete Request</button>
-            {{else}}
-                <button class="btn btn-primary add">Add Friend</button>
-            {{/if}}
-        {{/if}}
-    {{/if}}
-
     <div class="container">
+        <div><h1>{{user.profile.name}}</h1></div>
+        <div>{{user.profile.city}}</div>
+        <div>
+            <b>Friends: </b>
+            {{#each user.profile.friends}}
+                {{this}}
+            {{/each}}
+        </div>
+
+        <div>
+            {{#if notSelf}}
+                {{#if notFriends}}
+                    {{#if hasRequest}}
+                        <button class="btn btn-primary accept">Accept</button>
+                        <button class="btn btn-primary reject">Reject</button>
+                    {{else if hasRequested}}
+                        <button class="btn btn-primary delete">Delete Request</button>
+                    {{else}}
+                        <button class="btn btn-primary add">Add Friend</button>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+
+    
         <div class="row">
             {{#each posts}}
-                <div class="col-lg-4 col-12">
+                <div class="col l4 12">
                     {{> Post}}
                 </div>
             {{/each}}        

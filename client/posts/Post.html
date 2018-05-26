@@ -1,35 +1,43 @@
 <template name="Post">
-    <div class="card post-container">
-        <div class="card-header">
-            <span>Posted at {{time}} by <a href="/users/{{author}}">{{authorUsername}}</a></span>
-            {{#if belongsToUser}}
-                <button class="btn btn-link remove-button">Remove</button>
-            {{/if}}
-        </div>
-        <div class="card-body content">
-            <img class="img-fluid materialboxed {{filter}}" width="100%" src="{{imageInfo.url}}">
-            <div>{{text}}</div>
-            <div>{{likeCounter}} likes, {{commentInfo.count}} comments</div>
-        </div>
+    <div class="card">        
+        <div class="card-content">
+            <div class="card-header">
+                <span>Posted at {{time}} by <a href="/users/{{author}}">{{authorUsername}}</a></span>
+                {{#if belongsToUser}}
+                    <button class="btn-flat remove-button right">Remove</button>
+                {{/if}}
+            </div>
 
-        <div class="card-footer">
-            <button class="btn btn-link comment-toggle">Comment</button>
-            {{#if userLiked}}
+            <blockquote>{{text}}</blockquote>
+            <img class="responsive-img {{filter}}" src="{{imageInfo.url}}">
+            <div>
+                <span class="clickable {{#if userLiked}}un{{/if}}like-toggle"><i class="material-icons">{{#if userLiked}}thumb_up{{else}}thumb_down{{/if}}</i></span>
+                <span class="clickable comment-toggle"><i class="material-icons">mode_comment</i></span>
+                <!-- <span class="clickable {{#if userLiked}}un{{/if}}like-toggle">{{likeCounter}} <i class="material-icons">{{#if userLiked}}thumb_up{{else}}thumb_down{{/if}}</i></span>
+                <span class="clickable comment-toggle">{{commentInfo.count}} <i class="material-icons">mode_comment</i></span> -->
+            </div>
+
+            <div>
+                <b>{{likeCounter}} likes</b>
+            </div>
+
+            <!-- {{#if userLiked}}
                 <button class="btn btn-link unlike-toggle" href="#">Unlike</button>
             {{else}}
                 <button class="btn btn-link like-toggle" href="#">Like</button>
-            {{/if}}
-        </div>
+            {{/if}} -->
 
-        {{#if commentMode}}
-        <div class="comments-container">
-            <div>
-                {{#each commentInfo.comments}}
-                    <div>{{> Comment}}</div>
-                {{/each}}
-                {{> NewComment post=this}}
-            </div>
+            <!-- {{#if commentMode}} -->
+                <div class="comments-container">
+                    <div>
+                        {{#each commentInfo.comments}}
+                            <div>{{> Comment}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            <!-- {{/if}} -->
+
+            {{> NewComment post=this}}
         </div>
-        {{/if}}
     </div>
 </template>
