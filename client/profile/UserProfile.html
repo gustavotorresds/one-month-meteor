@@ -1,12 +1,19 @@
 <template name="UserProfile">
     <div class="container">
-        <div><h1>{{user.profile.name}}</h1></div>
-        <div>{{user.profile.city}}</div>
-        <div>
-            <b>Friends: </b>
-            {{#each user.profile.friends}}
-                {{this}}
-            {{/each}}
+        <div class="row">
+            <div class="col l2">
+                <img class="responsive-img circle" src="{{avatarInfo.url}}">        
+            </div>
+            <div class="col l4">
+                <div><h1>{{user.profile.name}}</h1></div>
+                <div>{{user.profile.city}}</div>
+                <div>
+                    {{user.profile.friends.length}} friends
+                </div>
+                <div>
+                    <a class="btn" href="/users/edit">Edit Profile</a>
+                </div>
+            </div>
         </div>
 
         <div>

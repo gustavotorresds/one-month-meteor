@@ -1,5 +1,3 @@
-Meteor.subscribe('images');
-
 Template.NewPost.onCreated(function() {
     this.imageId = new ReactiveVar(null);
 });
@@ -38,7 +36,7 @@ Template.NewPost.events({
           Images.insert(file, function (err, fileObj) {
             if (err) {
               // TODO: handle error appropriately
-              console.log('ERRO');
+              console.log('ERRO: ', err);
             } else {
               template.imageId.set(fileObj._id);
             }

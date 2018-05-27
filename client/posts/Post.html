@@ -1,15 +1,19 @@
 <template name="Post">
     <div class="card">        
-        <div class="card-content">
+        <!-- <div class="card-content"> -->
             <div class="card-header">
-                <span>Posted on {{time}} by <a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
-                {{#if belongsToUser}}
-                    <button class="btn-flat remove-button right">Remove</button>
-                {{/if}}
+                <div class="valign-wrapper">
+                    <img class="thumbnail circle" src="{{authorAvatar.url}}">
+                    <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
+
+                    {{#if belongsToUser}}
+                        <button class="btn-flat remove-button right">Remove</button>
+                    {{/if}}
+                </div>
             </div>
 
-            <blockquote>{{text}}</blockquote>
             <img class="responsive-img {{filter}}" src="{{imageInfo.url}}">
+            <blockquote>{{text}}</blockquote>
             <div>
                 <span class="clickable {{#if userLiked}}un{{/if}}like-toggle"><i class="material-icons">{{#if userLiked}}thumb_up{{else}}thumb_down{{/if}}</i></span>
                 <span class="clickable comment-toggle"><i class="material-icons">mode_comment</i></span>
@@ -30,6 +34,6 @@
             <!-- {{/if}} -->
 
             {{> NewComment post=this}}
-        </div>
+        <!-- </div> -->
     </div>
 </template>

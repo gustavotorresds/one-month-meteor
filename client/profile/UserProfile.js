@@ -1,10 +1,15 @@
 // TODO: should have a way to get all friendshi/request info at start. Code is
 // currently quite shitty.
-var requestFrom;
-var requestTo;
 
-Meteor.subscribe('requests');
-Meteor.subscribe('users');
+Template.UserProfile.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        self.subscribe('posts');
+        self.subscribe('requests');
+        self.subscribe('users');
+        self.subscribe('images');
+    });
+});
 
 /*
  * TODO: custom user info seems to be store under .profile, which might
@@ -13,36 +18,33 @@ Meteor.subscribe('users');
  * TODO: should probably make another Post template specific for user view.
  */
 Template.UserProfile.helpers({
-    user: function() {
-        var profileId = FlowRouter.getParam('id');
-        var user = Meteor.users.findOne({_id: profileId});
-        return user;
-    },
-    posts: function() {
-        var profileId = FlowRouter.getParam('id');
-        return Posts.find({author: profileId})
-    },
-    notSelf: function() {
-        var profileId = FlowRouter.getParam('id');
-        return profileId !== Meteor.userId();
-    },
     hasRequest: function() {
-        var profileId = FlowRouter.getParam('id');
-        requestTo = Requests.findOne({from: profileId, to: Meteor.userId()});
-        return !!requestTo;
+        return !!request(false);
     },
     hasRequested: function() {
-        var profileId = FlowRouter.getParam('id');
-        requestFrom = Requests.findOne({from: Meteor.userId(), to: profileId});
-        return !!requestFrom;
+        return !!request(true);
+    },
+    avatarInfo: function() {
+        var user = Meteor.users.findOne({_id: profileId()});
+        var avatar = Images.findOne({_id: user.profile.avatarId});
+        return avatar;
     },
     notFriends: function() {
-        var profileId = FlowRouter.getParam('id');
         var friends = Meteor.users.findOne({_id: Meteor.userId()}).profile.friends;
         if(friends) {
-            return friends.indexOf(profileId) === -1;
+            return friends.indexOf(profileId()) === -1;
         }
         return true;
+    },
+    notSelf: function() {
+        return profileId() !== Meteor.userId();
+    },
+    posts: function() {
+        return Posts.find({author: profileId()}).fetch().reverse();
+    },
+    user: function() {
+        var user = Meteor.users.findOne({_id: profileId()});
+        return user;
     }
 });
 
@@ -52,18 +54,25 @@ Template.UserProfile.events({
         Meteor.call('requestFriendship', profileId);
     },
     'click .accept': function(event, template) {
-        var profileId = FlowRouter.getParam('id');
-        requestTo = Requests.findOne({from: profileId, to: Meteor.userId()});
-        Meteor.call('acceptFriendship', requestTo);
+        Meteor.call('acceptFriendship', request(false));
     },
     'click .reject': function(event, template) {
-        var profileId = FlowRouter.getParam('id');
-        requestTo = Requests.findOne({from: profileId, to: Meteor.userId()});
-        Meteor.call('rejectFriendship', requestTo);
+        Meteor.call('rejectFriendship', request(false));
     },
     'click .delete': function(event, template) {
-        var profileId = FlowRouter.getParam('id');
-        requestFrom = Requests.findOne({from: Meteor.userId(), to: profileId});
-        Meteor.call('rejectFriendship', requestFrom);
+        Meteor.call('rejectFriendship', request(true));
     },
 });
+
+const request = function(isFromCurrentUser) {
+    var profileId = FlowRouter.getParam('id');
+    var request = (isFromCurrentUser ? 
+        Requests.findOne({from: Meteor.userId(), to: profileId}) :
+        Requests.findOne({from: profileId, to: Meteor.userId()})
+    );
+    return request;
+}
+
+const profileId = function() {
+    return FlowRouter.getParam('id');
+}

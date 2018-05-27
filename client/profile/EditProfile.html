@@ -1,0 +1,62 @@
+<template name="EditProfile">
+    <form class="profileForm">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Edit Profile</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l6">
+                    <input
+                        type="text"
+                        name="name"
+                        class="profileFormInput"
+                        value="{{user.profile.name}}"
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l6">
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>File</span>
+                        <input type="file" name="image" class="profileFormInput profileFileInput">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l6">
+                    <input
+                        type="text"
+                        name="bio"
+                        class="profileFormInput"
+                        value="{{user.profile.bio}}"
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l6">
+                    <input
+                        type="text"
+                        name="city"
+                        class="profileFormInput"
+                        value="{{user.profile.city}}"
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l6">
+                    <input
+                        class="btn"
+                        type="submit"
+                    >
+                </div>
+            </div>
+        </div>
+    </form>
+</template>

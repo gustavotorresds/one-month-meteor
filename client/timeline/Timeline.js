@@ -2,8 +2,7 @@
  * TODO: subscription doesn't make sense all over. Fix it throughout the app.
  */
 // Meteor.subscribe('posts');
-Meteor.subscribe('requests');
-
+// Meteor.subscribe('requests');
 Template.Timeline.onCreated(function() {
     var self = this;
     self.autorun(function() {

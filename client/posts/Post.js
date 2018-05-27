@@ -1,8 +1,10 @@
-Meteor.subscribe('posts');
-Meteor.subscribe('users');
-Meteor.subscribe('images');
-
 Template.Post.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+        self.subscribe('users');
+        self.subscribe('images');
+        self.subscribe('comments', self.data._id);
+    });
     this.commentMode = new ReactiveVar(false);
 });
 
@@ -10,6 +12,11 @@ Template.Post.helpers({
     authorUsername: function() {
         var authorUsername = Meteor.users.findOne({_id: this.author}).username;
         return authorUsername;
+    },
+    authorAvatar: function() {
+        var author = Meteor.users.findOne({_id: this.author});
+        var avatar = Images.findOne({_id: author.profile.avatarId});
+        return avatar;
     },
     time: function() {
         var post = this;
@@ -28,11 +35,17 @@ Template.Post.helpers({
         };
     },
     likeCounter: function() {
-        return this.likes.length;
+        if(this.likes) {
+            return this.likes.length;
+        }
+        return 0;
     },
     userLiked: function() {
-        var like = this.likes.indexOf(Meteor.userId());
-        return (like !== -1);
+        if(this.likes) {
+            var like = this.likes.indexOf(Meteor.userId());
+            return (like !== -1);    
+        }
+        return false;
     },
     // Refactor. It'd be best if this was inside post.
     imageInfo: function() {
