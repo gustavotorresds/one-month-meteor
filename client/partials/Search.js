@@ -1,3 +1,5 @@
+Meteor.subscribe('users');
+
 Template.Search.rendered = function() {
     Meteor.typeahead.inject();
 }

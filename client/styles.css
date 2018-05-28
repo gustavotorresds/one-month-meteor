@@ -1,4 +1,8 @@
 /* CSS declarations go here */
+.header-container {
+  margin-bottom: 70px;
+}
+
 a.username {
   font-weight: bold;
   color: black;
@@ -99,4 +103,14 @@ a.username {
 img.thumbnail {
   max-width: 30px;
   height: auto;
+}
+
+.user-profile h2 {
+  font-size: 2rem;
+  margin-right: 15px;
+}
+
+.user-profile h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
 }

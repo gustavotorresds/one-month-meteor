@@ -1,37 +1,34 @@
 <template name="UserProfile">
-    <div class="container">
+    <div class="user-profile container">
         <div class="row">
-            <div class="col l2">
+            <div class="col l2 offset-l1">
                 <img class="responsive-img circle" src="{{avatarInfo.url}}">        
             </div>
-            <div class="col l4">
-                <div><h1>{{user.profile.name}}</h1></div>
-                <div>{{user.profile.bio}}</div>
-                <div>{{user.profile.city}}</div>
-                <div>
-                    {{user.profile.friends.length}} friends
+            <div class="col l8 offset-l1">
+                <div class="valign-wrapper">
+                    <h2 class="username">{{user.username}}</h2>
+                    {{#if self}}
+                        <a class="btn" href="/users/edit">Edit Profile</a>
+                    {{else}}
+                        {{#if follows}}
+                            <button class="btn btn-primary unfollow">Unfollow</button>
+                        {{else}}
+                            <button class="btn btn-primary follow">Follow</button>
+                        {{/if}}
+                    {{/if}}
                 </div>
+
                 <div>
-                    <a class="btn" href="/users/edit">Edit Profile</a>
+                    <b>{{posts.length}}</b> posts
+                    <b>{{user.profile.following.length}}</b> following
+                    <b>{{user.profile.followers.length}}</b> followers
+                </div>
+
+                <div>
+                    <h3>{{user.profile.name}}</h3>
                 </div>
             </div>
         </div>
-
-        <div>
-            {{#if notSelf}}
-                {{#if notFriends}}
-                    {{#if hasRequest}}
-                        <button class="btn btn-primary accept">Accept</button>
-                        <button class="btn btn-primary reject">Reject</button>
-                    {{else if hasRequested}}
-                        <button class="btn btn-primary delete">Delete Request</button>
-                    {{else}}
-                        <button class="btn btn-primary add">Add Friend</button>
-                    {{/if}}
-                {{/if}}
-            {{/if}}
-        </div>
-
     
         <div class="row">
             {{#each posts}}

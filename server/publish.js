@@ -1,7 +1,7 @@
 Meteor.publish('posts', function(userId) {
     var user = Meteor.users.findOne({_id: this.userId});
 
-    var postAuthors = (user.profile.friends ? user.profile.friends : []);
+    var postAuthors = user.profile.following;
     postAuthors.push(this.userId);
 
     var posts = Posts.find({author: {$in: postAuthors}});
@@ -27,14 +27,4 @@ Meteor.publish('images', function(postId) {
     // }
     var images = Images.find({});
     return images;
-});
-
-Meteor.publish('requests', function() {
-    var requests = Requests.find({
-        $or: [
-            {to: this.userId},
-            {from:this.userId}
-        ]
-    });
-    return requests;
 });

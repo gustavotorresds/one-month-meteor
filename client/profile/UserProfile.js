@@ -1,11 +1,7 @@
-// TODO: should have a way to get all friendshi/request info at start. Code is
-// currently quite shitty.
-
 Template.UserProfile.onCreated(function() {
     var self = this;
     self.autorun(function() {
         self.subscribe('posts');
-        self.subscribe('requests');
         self.subscribe('users');
         self.subscribe('images');
     });
@@ -18,29 +14,23 @@ Template.UserProfile.onCreated(function() {
  * TODO: should probably make another Post template specific for user view.
  */
 Template.UserProfile.helpers({
-    hasRequest: function() {
-        return !!request(false);
-    },
-    hasRequested: function() {
-        return !!request(true);
-    },
     avatarInfo: function() {
         var user = Meteor.users.findOne({_id: profileId()});
         var avatar = Images.findOne({_id: user.profile.avatarId});
         return avatar;
     },
-    notFriends: function() {
-        var friends = Meteor.users.findOne({_id: Meteor.userId()}).profile.friends;
-        if(friends) {
-            return friends.indexOf(profileId()) === -1;
+    follows: function() {
+        var following = Meteor.users.findOne({_id: Meteor.userId()}).profile.following;
+        if(following) {
+            return following.indexOf(profileId()) !== -1;
         }
-        return true;
-    },
-    notSelf: function() {
-        return profileId() !== Meteor.userId();
+        return false;
     },
     posts: function() {
         return Posts.find({author: profileId()}).fetch().reverse();
+    },
+    self: function() {
+        return profileId() === Meteor.userId();
     },
     user: function() {
         var user = Meteor.users.findOne({_id: profileId()});
@@ -49,29 +39,13 @@ Template.UserProfile.helpers({
 });
 
 Template.UserProfile.events({
-    'click .add': function(event, template) {
-        var profileId = FlowRouter.getParam('id');
-        Meteor.call('requestFriendship', profileId);
+    'click .follow': function(event, template) {
+        Meteor.call('followProfile', profileId());
     },
-    'click .accept': function(event, template) {
-        Meteor.call('acceptFriendship', request(false));
-    },
-    'click .reject': function(event, template) {
-        Meteor.call('rejectFriendship', request(false));
-    },
-    'click .delete': function(event, template) {
-        Meteor.call('rejectFriendship', request(true));
-    },
+    'click .unfollow': function(event, template) {
+        Meteor.call('unfollowProfile', profileId());
+    }
 });
-
-const request = function(isFromCurrentUser) {
-    var profileId = FlowRouter.getParam('id');
-    var request = (isFromCurrentUser ? 
-        Requests.findOne({from: Meteor.userId(), to: profileId}) :
-        Requests.findOne({from: profileId, to: Meteor.userId()})
-    );
-    return request;
-}
 
 const profileId = function() {
     return FlowRouter.getParam('id');
