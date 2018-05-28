@@ -16,7 +16,11 @@ Template.Post.helpers({
     authorAvatar: function() {
         var author = Meteor.users.findOne({_id: this.author});
         var avatar = Images.findOne({_id: author.profile.avatarId});
-        return avatar;
+    
+        if(avatar) {
+            return avatar;
+        }
+        return {url: 'https://s3.ap-south-1.amazonaws.com/weddingasia/website/images/default-userAvatar.png'};
     },
     time: function() {
         var post = this;

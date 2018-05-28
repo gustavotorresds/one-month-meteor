@@ -1,3 +1,8 @@
+/*
+ * TODO: search the best way of having standard pictures for profile. Should
+ * we do it on the backend of the frontend?
+ */
+
 var imageStore = new FS.Store.GridFS("images");
 
 Images = new FS.Collection("images", {

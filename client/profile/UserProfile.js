@@ -17,7 +17,10 @@ Template.UserProfile.helpers({
     avatarInfo: function() {
         var user = Meteor.users.findOne({_id: profileId()});
         var avatar = Images.findOne({_id: user.profile.avatarId});
-        return avatar;
+        if(avatar) {
+            return avatar;
+        }
+        return {url: 'https://s3.ap-south-1.amazonaws.com/weddingasia/website/images/default-userAvatar.png'};
     },
     follows: function() {
         var following = Meteor.users.findOne({_id: Meteor.userId()}).profile.following;

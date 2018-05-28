@@ -1,8 +1,14 @@
+/*
+ * TODO: Should image be stored as an ID, URL or both?
+ */
+
 Meteor.methods({
-    setUserAvatar: function(imageId) {
+    setUserAvatar: function(imageId, imageUrl) {
+        var imageUrl = Images.findOne().url();
         Meteor.users.update(this.userId, {
             $set: {
-                'profile.avatarId': imageId
+                'profile.avatarId': imageId,
+                'profile.avatarUrl': imageUrl
             }
         });
     },

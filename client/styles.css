@@ -1,4 +1,8 @@
 /* CSS declarations go here */
+body {
+  background: #fafafa;
+}
+
 .header-container {
   margin-bottom: 70px;
 }
@@ -7,6 +11,10 @@ a.username {
   font-weight: bold;
   color: black;
   text-decoration: none;
+}
+
+.user-header a {
+  margin-left: 10px;
 }
 
 .post-container {
