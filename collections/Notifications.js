@@ -2,27 +2,35 @@ import SimpleSchema from 'simpl-schema'
 
 Notifications = new Mongo.Collection('notifications');
 
+Notifications.allow({
+    insert: function(userId, doc) {
+        return !!userId;
+    },
+    update: function(userId, doc) {
+        return !!userId;
+    }
+});
+
 NotificationSchema = new SimpleSchema({
-    authorId: {
+    actorId: {
         type: String,
         label: "Author",
         autoValue: function() {
             return this.userId
         }
     },
-    recipientId: {
+    subjectId: {
         type: String,
         label: "Author"
     },
-    actionType: {
+    text: {
         type: String,
-        label: "Action",
-        autoValue: function() {
-            return "Follow"
-        }
+        label: "Text"
     },
-    objectId: {
+    link: {
         type: String,
-        label: "Object"
+        label: "Link"
     }
 });
+
+Notifications.attachSchema(NotificationSchema);

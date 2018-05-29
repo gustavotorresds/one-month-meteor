@@ -73,6 +73,20 @@ Meteor.methods({
                 likes: this.userId
             }
         });
+
+        var username = Meteor.users.findOne({_id: this.userId}).username;
+        var subjectId = Posts.findOne({_id: postId}).author;
+
+        if(subjectId === this.userId) {
+            return;
+        }
+        
+        var not = Notifications.insert({
+            actorId: this.userId,
+            subjectId: subjectId,
+            text: `${username} curtiu seu post`,
+            link: `/posts/${postId}`
+        });
     },
     unlike: function(postId) {
         Posts.update(postId, {

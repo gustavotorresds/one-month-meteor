@@ -122,3 +122,28 @@ img.thumbnail {
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.notifications-container {
+  z-index: 999;
+  margin-top: 10px;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+
+.notifications-container .diviver {
+  margin: 0;
+}
+
+.notifications-container p:hover {
+  background-color: #b2dfdb;
+}
+
+.notifications-container p {
+  margin: 0;
+  padding: 10px;
+  line-height: 1.5rem;
+}
+
+.notifications-container a {
+  color: black;
+}

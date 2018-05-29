@@ -34,5 +34,22 @@ Comments.attachSchema(CommentSchema);
 Meteor.methods({
     insertComment: function(postId, commentText) {
         var newComment = Comments.insert({text: commentText, post: postId});
+
+        var username = Meteor.users.findOne({_id: this.userId}).username;
+        var subjectId = Posts.findOne({_id: postId}).author;
+
+        if(subjectId === this.userId) {
+            return;
+        }
+        
+        var not = Notifications.insert({
+            actorId: this.userId,
+            subjectId: subjectId,
+            text: `${username} comentou no seu post`,
+            link: `/posts/${postId}`
+        });
+    },
+    removeComment: function(commentId) {
+        Comments.remove(commentId);
     }
 });

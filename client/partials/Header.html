@@ -4,9 +4,20 @@
           <div class="nav-wrapper">
             <div class="container">
               <div class="row">
+                <div class="left">
+                  <div class="col">
+                    <a class="btn" href="/">Home</a>
+                  </div>
+                  <div class="col">
+                    {{> Search}}
+                  </div>
+                </div>
                 <div class="right">
                     <div class="col">
-                      {{> Search}}
+                      {{> Notifications}}
+                    </div>
+                    <div class="col">
+                      <a class="btn" href="/users/{{currentUserId}}">Me</a>
                     </div>
                     <div class="col">
                       {{> atNavButton}}

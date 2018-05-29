@@ -28,3 +28,7 @@ Meteor.publish('images', function(postId) {
     var images = Images.find({});
     return images;
 });
+
+Meteor.publish('notifications', function() {
+    return Notifications.find({});
+});

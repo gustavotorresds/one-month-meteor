@@ -1,0 +1,17 @@
+<template name="Notifications">
+    {{#dropdownTrigger name="myNots" }}
+      <button class="btn">Notifications</button>
+    {{/dropdownTrigger}}
+
+    {{#dropdown name="myNots"}}
+        <div class="teal lighten-5 z-depth-5 notifications-container">
+            {{#each notifications}}
+                <a href="{{link}}"><p>{{text}}</p></a>
+                <div class="divider"></div>
+            {{else}}
+                <p>You don't have any notifications yet.</p>
+                <div class="divider"></div>
+            {{/each}}
+        </div>
+    {{/dropdown}}
+</template>

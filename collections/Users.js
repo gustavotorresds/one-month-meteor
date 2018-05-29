@@ -22,7 +22,7 @@ Meteor.methods({
         });    
     },
     followProfile: function(profileId) {
-         Meteor.users.update(this.userId, {
+        Meteor.users.update(this.userId, {
             $addToSet: {
                 'profile.following': profileId
             }
@@ -31,6 +31,15 @@ Meteor.methods({
             $addToSet: {
                 'profile.followers': this.userId
             }
+        });
+
+        var username = Meteor.users.findOne({_id: this.userId}).username;
+        
+        var not = Notifications.insert({
+            actorId: this.userId,
+            subjectId: profileId,
+            text: `${username} está te seguindo`,
+            link: `/users/${this.userId}`
         });
     },
     unfollowProfile: function(profileId) {
@@ -46,7 +55,6 @@ Meteor.methods({
         });
     },
     initializeUserValues: function() {
-        console.log('UPDATING USER VARS');
         Meteor.users.update(this.userId, {
             $set: {
                 'profile.following': [],
