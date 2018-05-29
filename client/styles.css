@@ -3,6 +3,17 @@ body {
   background: #fafafa;
 }
 
+main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main-container {
+  flex: 1 0 auto;
+}
+
+
 .header-container {
   margin-bottom: 70px;
 }

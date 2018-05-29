@@ -4,9 +4,23 @@
             <div class="col l6 s12 offset-l3">
                 {{> NewPost}}
 
-                {{#each posts}}
-                    {{> Post}}
-                {{/each}}
+                {{#if Template.subscriptionsReady}}
+                    {{#each posts}}
+                        {{> Post}}
+                    {{/each}}
+                {{else}}
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                </div>
+                {{/if}}
             </div>
         </div>
     </div>

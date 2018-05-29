@@ -40,6 +40,11 @@ Meteor.publish('images', function(postId) {
     return images;
 });
 
+Meteor.publish('singleImage', function(imageId) {
+    let images = Images.find({_id: imageId});
+    return images;
+});
+
 Meteor.publish('postImages', function(postId) {
     let post = Posts.findOne({_id: postId});
     let images = Images.find({_id: post.imageId});

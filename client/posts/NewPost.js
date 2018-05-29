@@ -40,6 +40,7 @@ Template.NewPost.events({
               // TODO: handle error appropriately
               console.log('ERRO: ', err);
             } else {
+              Meteor.subscribe('singleImage', fileObj._id);
               template.imageId.set(fileObj._id);
             }
           });

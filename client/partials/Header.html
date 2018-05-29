@@ -8,17 +8,21 @@
                   <div class="col">
                     <a class="btn" href="/">Home</a>
                   </div>
-                  <div class="col">
-                    {{> Search}}
-                  </div>
+                  {{#if currentUser}}
+                    <div class="col">
+                      {{> Search}}
+                    </div>
+                  {{/if}}
                 </div>
                 <div class="right">
-                    <div class="col">
-                      {{> Notifications}}
-                    </div>
-                    <div class="col">
-                      <a class="btn" href="/users/{{currentUserId}}">Me</a>
-                    </div>
+                    {{#if currentUser}}
+                      <div class="col">
+                        {{> Notifications}}
+                      </div>
+                      <div class="col">
+                        <a class="btn" href="/users/{{currentUserId}}">Me</a>
+                      </div>
+                    {{/if}}
                     <div class="col">
                       {{> atNavButton}}
                     </div>

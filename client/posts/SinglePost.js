@@ -10,6 +10,6 @@ Template.SinglePost.onCreated(function() {
 Template.SinglePost.helpers({
     thisPost: function() {
         var postId = FlowRouter.getParam('id');
-        return Posts.find({_id: postId});
+        return Posts.findOne({_id: postId});
     }
 });
