@@ -1,9 +1,10 @@
 Template.UserProfile.onCreated(function() {
     var self = this;
     self.autorun(function() {
-        self.subscribe('posts');
-        self.subscribe('users');
-        self.subscribe('images');
+        let id = profileId();
+        self.subscribe('userPosts', id);
+        self.subscribe('singleUser', id);
+        self.subscribe('userImages', id);
     });
 });
 
@@ -24,10 +25,7 @@ Template.UserProfile.helpers({
     },
     follows: function() {
         var following = Meteor.users.findOne({_id: Meteor.userId()}).profile.following;
-        if(following) {
-            return following.indexOf(profileId()) !== -1;
-        }
-        return false;
+        return following.indexOf(profileId()) !== -1;
     },
     posts: function() {
         return Posts.find({author: profileId()}).fetch().reverse();

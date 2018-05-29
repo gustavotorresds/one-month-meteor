@@ -1,11 +1,11 @@
 Template.Post.onCreated(function() {
     var self = this;
     self.autorun(function() {
-        self.subscribe('users');
-        self.subscribe('images');
+        self.subscribe('singleUser', self.data.author);
+        self.subscribe('postImages', self.data._id);
+        self.subscribe('userImages', self.data.author);
         self.subscribe('comments', self.data._id);
     });
-    this.commentMode = new ReactiveVar(false);
 });
 
 Template.Post.helpers({
@@ -22,21 +22,10 @@ Template.Post.helpers({
         }
         return {url: 'https://s3.ap-south-1.amazonaws.com/weddingasia/website/images/default-userAvatar.png'};
     },
-    time: function() {
-        var post = this;
-        var time = new Date(post.createdAt);
-        return `${time.getDate()}/${time.getMonth() + 1}`; 
-    },
-    commentMode: function() {
-        return Template.instance().commentMode.get();
-    },
-    commentInfo: function() {
+    comments: function() {
         var comments = Comments.find({post: this._id});
         var count = comments.count();
-        return {
-            comments: comments,
-            count: count
-        };
+        return comments;
     },
     likeCounter: function() {
         if(this.likes) {

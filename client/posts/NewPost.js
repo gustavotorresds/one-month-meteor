@@ -1,3 +1,8 @@
+/*
+ * TODO: should we subscribe to 'images'?
+ * TODO: check whether image load/update are ok, I feel like there's a better
+ * way to implement this.
+ */
 Template.NewPost.onCreated(function() {
     this.imageId = new ReactiveVar(null);
 });
@@ -9,9 +14,6 @@ Template.NewPost.helpers({
   }
 });
 
-/*
- * TODO: shouldn't be able to use Images.insert because it's a server-side op.
- */
 Template.NewPost.events({
     'submit .newPost': function(event, template) {
         event.preventDefault();
@@ -22,10 +24,10 @@ Template.NewPost.events({
         Meteor.call('insertPost', text, imageId, filter);
 
         event.target.text.value = '';
-        event.target.text.value = '';
+        event.target.image.value = '';
+        event.target.imagePath.value = '';
 
-        template.imageId.set(null);
-     
+        template.imageId.set(null);     
     },
     'change .myFileInput': function(event, template) {
       FS.Utility.eachFile(event, function(file) {

@@ -1,6 +1,5 @@
 <template name="Post">
     <div class="card">        
-        <!-- <div class="card-content"> -->
         <div class="card-content">
             <div class="valign-wrapper user-header">
                 <img class="thumbnail circle" src="{{authorAvatar.url}}">
@@ -24,12 +23,12 @@
             <div><b>{{likeCounter}} likes</b></div>
 
             <div class="comments-container">
-                {{#each commentInfo.comments}}
+                {{#each comments}}
                     <div>{{> Comment}}</div>
                 {{/each}}
-            </div>
 
-            {{> NewComment post=this}}
+                {{> NewComment post=this}}
+            </div>
         </div>
     </div>
 </template>

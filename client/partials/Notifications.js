@@ -1,5 +1,9 @@
-Meteor.subscribe('users');
-Meteor.subscribe('notifications');
+Template.Notifications.onCreated(function() {
+    let self = this;
+    self.autorun(function() {
+        self.subscribe('notifications');
+    });
+});
 
 Template.Notifications.helpers({
     notifications: function() {

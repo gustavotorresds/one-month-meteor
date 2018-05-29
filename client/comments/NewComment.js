@@ -1,5 +1,3 @@
-Meteor.subscribe('notifications');
-
 Template.NewComment.events({
     'submit .new-comment': function(event) {
         event.preventDefault();

@@ -1,5 +1,10 @@
-Meteor.subscribe('images');
-Meteor.subscribe('users');
+Template.EditProfile.onCreated(function() {
+  let self = this;
+  self.autorun(function() {
+    self.subscribe('userImages', Meteor.userId());
+    self.subscribe('singleUser', Meteor.userId());
+  });
+});
 
 Template.EditProfile.helpers({
   image: function() {
@@ -32,6 +37,8 @@ Template.EditProfile.events({
       var name = event.target.name.value;
 
       Meteor.call('updateProfile', bio, city, name);
+
+      FlowRouter.go(`/users/${Meteor.userId()}`);
     }
 });
 

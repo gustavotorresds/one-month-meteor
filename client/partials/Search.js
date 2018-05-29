@@ -1,8 +1,13 @@
-Meteor.subscribe('users');
+Template.Search.onCreated(function() {
+    let self = this;
+    self.autorun(function() {
+        self.subscribe('users');
+    });
+});
 
-Template.Search.rendered = function() {
+Template.Search.onRendered(function() {
     Meteor.typeahead.inject();
-}
+});
 
 Template.Search.helpers({
     items: function() {
