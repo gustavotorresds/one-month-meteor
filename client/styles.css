@@ -158,3 +158,11 @@ img.thumbnail {
 .notifications-container a {
   color: black;
 }
+
+.fa {
+  font-size: 25px;
+}
+
+i.fa.fa-thumbs-o-up.liked {
+  color: #1EAEDB;
+}
