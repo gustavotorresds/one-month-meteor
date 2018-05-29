@@ -28,7 +28,8 @@ PostSchema = new SimpleSchema({
     },
     imageId: {
         type: String,
-        label: "Image ID"
+        label: "Image ID",
+        optional: true
     },
     author: {
         type: String,

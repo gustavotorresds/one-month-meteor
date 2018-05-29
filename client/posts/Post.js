@@ -52,7 +52,6 @@ Template.Post.helpers({
 
 Template.Post.events({
     'click .comment-toggle': function(event, template) {
-        template.commentMode.set(!template.commentMode.get());
         $('#new-comment-field').focus();
     },
     'click .like-toggle': function(event, template) {

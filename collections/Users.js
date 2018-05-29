@@ -53,13 +53,5 @@ Meteor.methods({
                 'profile.followers': this.userId
             }
         });
-    },
-    initializeUserValues: function() {
-        Meteor.users.update(this.userId, {
-            $set: {
-                'profile.following': [],
-                'profile.followers': []
-            }
-        });
     }
 });

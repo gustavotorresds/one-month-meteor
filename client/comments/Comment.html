@@ -1,6 +1,8 @@
 <template name="Comment">
-    <a class="username" href="/users/{{author}}">{{authorUsername}}</a> {{text}}
-    {{#if isAuthor}}
-        <span class="right clickable remove">x</span>
+    {{#if Template.subscriptionsReady}}
+        <a class="username" href="/users/{{author}}">{{authorUsername}}</a> {{text}}
+        {{#if isAuthor}}
+            <span class="right clickable remove">x</span>
+        {{/if}}
     {{/if}}
 </template>
