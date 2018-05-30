@@ -3,12 +3,7 @@
         <div class="post-header">
             <div class="valign-wrapper user-header">
                 {{> avatar userId=author shape="circle" size="small"}}
-                <!-- <img class="thumbnail circle" src="{{authorAvatar.url}}"> -->
                 <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
-
-                {{#if belongsToUser}}
-                    <button class="btn-flat remove-button right">Remove</button>
-                {{/if}}
             </div>
         </div>
 
@@ -30,6 +25,11 @@
             <span class="clickable comment-toggle">
                 <i class="fa fa-comment-o"></i>
             </span>
+            {{#if belongsToUser}}
+                <span class="right">
+                    <i class="material-icons clickable remove-button">delete</i>
+                </span>
+            {{/if}}
 
             <div><b>{{likeCounter}} likes</b></div>
 

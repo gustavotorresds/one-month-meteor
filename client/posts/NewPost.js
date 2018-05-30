@@ -8,6 +8,10 @@ Template.NewPost.onCreated(function() {
 });
 
 Template.NewPost.helpers({
+  authorUsername: function() {
+      var authorUsername = Meteor.users.findOne({_id: Meteor.userId()}).username;
+      return authorUsername;
+  },
   getImage: function() {
     var imageId = Template.instance().imageId.get();
     return (imageId ? Images.findOne({_id: imageId}) : {});
@@ -26,9 +30,7 @@ Template.NewPost.events({
         event.target.text.value = '';
         if(event.target.imagePath) {}
         event.target.image.value = '';
-        event.target.imagePath.value = '';
-
-        template.imageId.set(null);     
+        template.imageId.set(null);
     },
     'change .myFileInput': function(event, template) {
       FS.Utility.eachFile(event, function(file) {

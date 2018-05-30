@@ -142,15 +142,10 @@ img.thumbnail {
   z-index: 999;
   margin-top: 10px;
   padding: 10px 0;
-  border-radius: 5px;
-}
-
-.notifications-container .diviver {
-  margin: 0;
 }
 
 .notifications-container p:hover {
-  background-color: #b2dfdb;
+  background-color: #eeeeee;
 }
 
 .notifications-container p {
@@ -173,4 +168,19 @@ i.fa.fa-thumbs-o-up.liked {
 
 .card-image {
   margin-top: 15px;
+}
+
+.notifications-button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.notifications-button:active {
+  background: none;
+}
+
+.notifications-button:focus {
+  background: none;
 }

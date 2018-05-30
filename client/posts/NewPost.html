@@ -1,56 +1,32 @@
 <template name="NewPost">
-    <form action="#" id="newPost" class="newPost">
-        <div class="input-field">
-            <input name="text" type="text" class="validate" placeholder="What's on your mind?" autocomplete="off">
-        </div>
+  <form id="newPost" class="card newPost">
+    <div class="post-header">
+        <div class="valign-wrapper user-header">
+            {{> avatar userId=currentUser._id shape="circle" size="small"}}
+            <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
 
-        <div class="file-field input-field">
-          <div class="btn">
-            <span>File</span>
-            <input type="file" name="image" class="myFileInput">
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" name="imagePath" type="text">
-          </div>
+            {{#if belongsToUser}}
+                <button class="btn-flat remove-button right">Remove</button>
+            {{/if}}
         </div>
+    </div>
 
-        <!-- Code for Image Filter. -->
-       <!--  <div class="row">
-          <div class="col l3">
-            <label for="grayButton" class="filterLabel clickable">
-              <input id="grayButton" name="filter" type="radio" value="grayscale" />
-              <img class="responsive-img grayscale" src="{{getImage.url}}">
-            </label>
-          </div>  
-          <div class="col l3">
-            <label for="sepiaButton" class="filterLabel clickable">
-              <input id="sepiaButton" name="filter" type="radio" value="sepia" />
-              <img class="responsive-img sepia" src="{{getImage.url}}">
-            </label>
-          </div>
-          <div class="col l3">
-            <label for="brightButton" class="filterLabel clickable">
-              <input id="brightButton" name="filter" type="radio" value="bright" />
-              <img class="responsive-img bright" src="{{getImage.url}}">
-            </label>
-          </div>
-          <div class="col l3">
-            <label for="noneButton" class="filterLabel clickable">
-              <input id="noneButton" name="filter" type="radio" value="none" checked />
-              <img class="responsive-img none" src="{{getImage.url}}">
-            </label>
-          </div>
-        </div>
+    <div class="post-text">
+      <div>
+          <textarea name="text" class="materialize-textarea" placeholder="What's on your mind?"></textarea>
+      </div>
+      <span class="file-field">
+        <i class="fa fa-camera"></i>
+        <input type="file" name="image" class="myFileInput">
+      </span>
+    </div>
 
-        <div>
-          <img id="displayPostImage" class="responsive-img {{getFilter}}" src="{{getImage.url}}">
-        </div> -->
-        
-        <div>
-          <img id="displayPostImage" class="responsive-img {{getFilter}}" src="{{getImage.url}}">
-        </div>
+    <div class="card-image">
+      <img id="displayPostImage" class="responsive-img {{getFilter}}" src="{{getImage.url}}">
+    </div>
 
-        <input type="submit" name="submit" class="btn">
-    </form>
-    
+    <div class="card-action">
+      <input type="submit" name="submit" class="btn">
+    </div>
+  </form>
 </template>

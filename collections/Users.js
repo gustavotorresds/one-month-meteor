@@ -53,5 +53,13 @@ Meteor.methods({
                 'profile.followers': this.userId
             }
         });
+    },
+    viewNotifications: function() {
+        console.log('trying to view');
+        Meteor.users.update(this.userId, {
+            $set: {
+                'hasNotifications': false
+            }
+        });
     }
 });
