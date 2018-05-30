@@ -13,15 +13,6 @@ Template.Post.helpers({
         var authorUsername = Meteor.users.findOne({_id: this.author}).username;
         return authorUsername;
     },
-    authorAvatar: function() {
-        var author = Meteor.users.findOne({_id: this.author});
-        var avatar = Images.findOne({_id: author.profile.avatarId});
-    
-        if(avatar) {
-            return avatar;
-        }
-        return {url: 'https://s3.ap-south-1.amazonaws.com/weddingasia/website/images/default-userAvatar.png'};
-    },
     comments: function() {
         var comments = Comments.find({post: this._id});
         var count = comments.count();
@@ -43,6 +34,7 @@ Template.Post.helpers({
     // Refactor. It'd be best if this was inside post.
     imageInfo: function() {
         var image = Images.findOne({_id: this.imageId});
+        console.log('URL: ', image.url())
         return image;
     },
     belongsToUser: function() {

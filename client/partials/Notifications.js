@@ -10,7 +10,6 @@ Template.Notifications.helpers({
     hasNotifications() {
         let user = Meteor.users.findOne({_id: Meteor.userId()});
         let has = !!user.hasNotifications;
-        console.log('HAS NOTS: ', has);
         return has;
     },
     notifications: function() {

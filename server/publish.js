@@ -1,6 +1,5 @@
 Meteor.publish('posts', function() {
     let user = Meteor.users.findOne({_id: this.userId});
-
     let postAuthors = user.profile.following;
     postAuthors.push(this.userId);
 

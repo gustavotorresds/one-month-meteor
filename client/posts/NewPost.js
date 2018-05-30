@@ -5,6 +5,7 @@
  */
 Template.NewPost.onCreated(function() {
     this.imageId = new ReactiveVar(null);
+    Meteor.subscribe('images');
 });
 
 Template.NewPost.helpers({
@@ -28,7 +29,6 @@ Template.NewPost.events({
         Meteor.call('insertPost', text, imageId, "none");
 
         event.target.text.value = '';
-        if(event.target.imagePath) {}
         event.target.image.value = '';
         template.imageId.set(null);
     },

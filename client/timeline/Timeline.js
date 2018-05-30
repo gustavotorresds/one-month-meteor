@@ -8,5 +8,5 @@ Template.Timeline.onCreated(function() {
 Template.Timeline.helpers({
     posts: function() {
         return Posts.find({}).fetch().reverse();
-    },
+    }
 });

@@ -31,11 +31,15 @@
         </div>
     
         <div class="row">
-            {{#each posts}}
-                <div class="col l4 12">
-                    {{> Post}}
-                </div>
-            {{/each}}        
+            <div class="col l6 s12 offset-l3">
+                {{#if Template.subscriptionsReady}}
+                    {{#each posts}}
+                        {{> Post}}
+                    {{/each}}
+                {{else}}
+                    {{> Loading}}  
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>
