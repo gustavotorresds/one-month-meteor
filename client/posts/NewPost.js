@@ -18,12 +18,13 @@ Template.NewPost.events({
     'submit .newPost': function(event, template) {
         event.preventDefault();
         var text = event.target.text.value;
-        var filter = document.querySelector('input[name=filter]:checked').value;
+        // var filter = document.querySelector('input[name=filter]:checked').value;
         var imageId = template.imageId.get();
 
-        Meteor.call('insertPost', text, imageId, filter);
+        Meteor.call('insertPost', text, imageId, "none");
 
         event.target.text.value = '';
+        if(event.target.imagePath) {}
         event.target.image.value = '';
         event.target.imagePath.value = '';
 

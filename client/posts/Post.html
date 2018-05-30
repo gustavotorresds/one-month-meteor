@@ -1,6 +1,6 @@
 <template name="Post">
     <div class="card">        
-        <div class="card-content">
+        <div class="post-header">
             <div class="valign-wrapper user-header">
                 {{> avatar userId=author shape="circle" size="small"}}
                 <!-- <img class="thumbnail circle" src="{{authorAvatar.url}}"> -->
@@ -12,16 +12,21 @@
             </div>
         </div>
 
-        <div class="card-image">
-            <img class="responsive-img {{filter}}" src="{{imageInfo.url}}">
+        <div class="post-text">
+            {{text}}
         </div>
+
+        {{#if imageInfo}}
+            <div class="card-image">
+                <img class="responsive-img" src="{{imageInfo.url}}">
+            </div>
+        {{/if}}
         
-        <div class="card-content">
-            <div>{{text}}</div>
+        <div class="post-interactions">
+
             <span class="clickable {{#if userLiked}}un{{/if}}like-toggle">
-                <i class="fa fa-thumbs-o-up {{#if userLiked}}liked{{/if}}"></i>{{likecount}}
+                <i class="fa fa-heart{{#unless userLiked}}-o{{/unless}}"></i>{{likecount}}
             </span>
-            <!-- <span class="clickable {{#if userLiked}}un{{/if}}like-toggle"><i class="material-icons">{{#if userLiked}}thumb_up{{else}}thumb_down{{/if}}</i></span> -->
             <span class="clickable comment-toggle">
                 <i class="fa fa-comment-o"></i>
             </span>

@@ -32,6 +32,10 @@ a.username {
     margin-bottom: 20px;
 }
 
+.post-header, .post-text, .post-interactions {
+  padding: 15px 15px 0;
+}
+
 .grayscale {
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
@@ -165,4 +169,8 @@ img.thumbnail {
 
 i.fa.fa-thumbs-o-up.liked {
   color: #1EAEDB;
+}
+
+.card-image {
+  margin-top: 15px;
 }
