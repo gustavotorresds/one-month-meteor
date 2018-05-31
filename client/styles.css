@@ -184,3 +184,11 @@ i.fa.fa-thumbs-o-up.liked {
 .notifications-button:focus {
   background: none;
 }
+
+.small-top-margin {
+  margin-top: 3px ;
+}
+
+.avatar {
+  display: inline-block;
+}

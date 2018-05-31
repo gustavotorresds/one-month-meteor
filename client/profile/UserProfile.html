@@ -1,14 +1,28 @@
 <template name="UserProfile">
     <div class="user-profile container">
         <div class="row">
-            <div class="col l2 offset-l1">
+            <div class="col-lg-2 col-lg-offset-1">
                 {{> avatar user=user shape="circle" size="large"}}
-            </div>
-            <div class="col l8 offset-l1">
-                <div class="valign-wrapper">
-                    <h2 class="username">{{user.username}}</h2>
+            
+                <h2 class="username">{{user.username}}</h2>
+                
+                <div>
+                    <b>{{posts.length}}</b> posts
+                </div>
+                <div>
+                    <b>{{user.profile.following.length}}</b> following
+                </div>
+                <div>
+                    <b>{{user.profile.followers.length}}</b> followers
+                </div>
+
+                <div>
+                    <h3>{{user.profile.name}}</h3>
+                </div>
+
+                <div>
                     {{#if self}}
-                        <a class="btn" href="/users/edit">Edit Profile</a>
+                        <a class="btn btn-default" href="/users/edit">Edit Profile</a>
                     {{else}}
                         {{#if follows}}
                             <button class="btn btn-primary unfollow">Unfollow</button>
@@ -17,21 +31,9 @@
                         {{/if}}
                     {{/if}}
                 </div>
-
-                <div>
-                    <b>{{posts.length}}</b> posts
-                    <b>{{user.profile.following.length}}</b> following
-                    <b>{{user.profile.followers.length}}</b> followers
-                </div>
-
-                <div>
-                    <h3>{{user.profile.name}}</h3>
-                </div>
             </div>
-        </div>
-    
-        <div class="row">
-            <div class="col l6 s12 offset-l3">
+        
+            <div class="col-lg-6">
                 {{#if Template.subscriptionsReady}}
                     {{#each posts}}
                         {{> Post}}

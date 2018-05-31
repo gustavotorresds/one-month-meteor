@@ -34,7 +34,6 @@ Template.Post.helpers({
     // Refactor. It'd be best if this was inside post.
     imageInfo: function() {
         var image = Images.findOne({_id: this.imageId});
-        console.log('URL: ', image.url())
         return image;
     },
     belongsToUser: function() {

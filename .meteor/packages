@@ -31,13 +31,12 @@ session
 cfs:standard-packages
 cfs:gridfs
 useraccounts:core
-useraccounts:materialize
 aldeed:autoform
 aldeed:collection2
-materialize:materialize
-planettraining:material-design-icons-font
 useraccounts:flow-routing
 sergeyt:typeahead
 lookback:dropdowns
 utilities:avatar
 fortawesome:fontawesome
+useraccounts:bootstrap
+twbs:bootstrap

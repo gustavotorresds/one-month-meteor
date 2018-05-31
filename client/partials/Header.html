@@ -1,37 +1,24 @@
 <template name="Header">
-    <div class="navbar-fixed header-container">
-        <nav>
-          <div class="nav-wrapper">
-            <div class="container">
-              <div class="row">
-                <div class="left">
-                  <div class="col">
-                    <a href="/"><i class="material-icons">home</i></a>
-                  </div>
-                  {{#if currentUser}}
-                    <div class="col">
-                      {{> Search}}
-                    </div>
-                  {{/if}}
-                </div>
-                <div class="right">
-                    {{#if currentUser}}
-                      <div class="col">
-                        {{> Notifications}}
-                      </div>
-                      <div class="col">
-                        <a href="/users/{{currentUserId}}">
-                          <i class="material-icons">person_outline</i>
-                        </a>
-                      </div>
-                    {{/if}}
-                    <div class="col">
-                      {{> atNavButton}}
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-    </div>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Brand</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-form navbar-left form-group">
+          {{> Search}}
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">{{> Notifications}}</li>
+          <li>
+            <a href="/users/{{currentUserId}}"><i class="fa fa-user"></i></a>
+          </li>
+          <li>{{> atNavButton}}</li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 </template>

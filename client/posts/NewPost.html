@@ -1,32 +1,28 @@
 <template name="NewPost">
-  <form id="newPost" class="card newPost">
-    <div class="post-header">
-        <div class="valign-wrapper user-header">
-            {{> avatar userId=currentUser._id shape="circle" size="small"}}
+  <form id="newPost" class="panel panel-default newPost">
+    <div class="panel-heading">
+        <!-- <div class="valign-wrapper user-header"> -->
+            <!-- {{> avatar userId=currentUser._id shape="circle" size="small"}} -->
             <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
-
-            {{#if belongsToUser}}
-                <button class="btn-flat remove-button right">Remove</button>
-            {{/if}}
-        </div>
+        <!-- </div> -->
     </div>
 
-    <div class="post-text">
-      <div>
-          <textarea name="text" class="materialize-textarea" placeholder="What's on your mind?"></textarea>
+    <div class="panel-body">
+      <div class="form-group">
+          <textarea name="text" class="form-control" placeholder="What's on your mind?"></textarea>
       </div>
-      <span class="file-field">
-        <i class="fa fa-camera"></i>
+      <span class="form-group">
+        <!-- <i class="fa fa-camera"></i> -->
         <input type="file" name="image" class="myFileInput">
       </span>
     </div>
 
-    <div class="card-image">
+    <!-- <div class="card-image">
       <img id="displayPostImage" class="responsive-img {{getFilter}}" src="{{getImage.url}}">
-    </div>
+    </div> -->
 
-    <div class="card-action">
-      <input type="submit" name="submit" class="btn">
+    <div class="panel-footer">
+      <button type="submit" name="submit" class="btn btn-default">Submit</button>
     </div>
   </form>
 </template>

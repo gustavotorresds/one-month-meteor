@@ -1,24 +1,21 @@
 <template name="Post">
-    <div class="card">        
-        <div class="post-header">
-            <div class="valign-wrapper user-header">
-                {{> avatar userId=author shape="circle" size="small"}}
-                <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
-            </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="align-middle">
+                <!-- {{> avatar userId=author shape="circle" size="small"}} -->
+                <a class="username pull-top" href="/users/{{author}}">{{authorUsername}}</a>
+            </span>
         </div>
-
-        <div class="post-text">
+            
+        <div class="panel-body">
             {{text}}
         </div>
 
-        {{#if imageInfo}}
-            <div class="card-image">
-                <img class="responsive-img" src="{{imageInfo.url}}">
-            </div>
-        {{/if}}
-        
-        <div class="post-interactions">
+            {{#if imageInfo}}
+                <img class="img-responsive" src="{{imageInfo.url}}">
+            {{/if}}
 
+        <div class="panel-body">
             <span class="clickable {{#if userLiked}}un{{/if}}like-toggle">
                 <i class="fa fa-heart{{#unless userLiked}}-o{{/unless}}"></i>{{likecount}}
             </span>
@@ -26,8 +23,8 @@
                 <i class="fa fa-comment-o"></i>
             </span>
             {{#if belongsToUser}}
-                <span class="right">
-                    <i class="material-icons clickable remove-button">delete</i>
+                <span class="pull-right">
+                    <i class="fa fa-trash clickable remove-button"></i>
                 </span>
             {{/if}}
 
@@ -35,7 +32,7 @@
 
             <div class="comments-container">
                 {{#each comments}}
-                    <div>{{> Comment}}</div>
+                    {{> Comment}}
                 {{/each}}
 
                 {{> NewComment post=this}}

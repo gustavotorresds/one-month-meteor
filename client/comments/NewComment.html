@@ -1,14 +1,25 @@
 <template name="NewComment">
-    <form class="new-comment">
-        <div class="input-field">
+    <form class="new-comment row small-top-margin">
+        <div class="col-xs-10">
             <input
                 id="new-comment-field"
                 type="text"
+                class="form-control input-field"
                 name="comment"
-                class="materialize-textarea"
-                autocomplete="off"
                 placeholder="Type a comment..."
+                autocomplete="off"
             >
         </div>
+        <button type="submit" class="btn col-xs-1">Send</button>
+        <!-- <div class="input-field">
+            <input
+                
+                
+                
+                class="materialize-textarea"
+                autocomplete="off"
+                
+            >
+        </div> -->
     </form>
 </template>

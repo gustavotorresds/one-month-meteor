@@ -1,23 +1,17 @@
 <template name="Notifications">
-    {{#dropdownTrigger name="myNots" }}
-        <button class="notifications-button">
-            {{#if hasNotifications}}
-                <i class="material-icons">notifications_active</i>
-            {{else}}
-                <i class="material-icons">notifications_none</i>
-            {{/if}}
-        </button>
-    {{/dropdownTrigger}}
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        {{#if hasNotifications}}
+            <i class="fa fa-bell"></i>
+        {{else}}
+            <i class="fa fa-bell-o"></i>
+        {{/if}}
+    </a>
 
-    {{#dropdown name="myNots"}}
-        <div class="white z-depth-2 notifications-container">
-            {{#each notifications}}
-                <a href="{{link}}"><p>{{text}}</p></a>
-                <div class="divider"></div>
-            {{else}}
-                <p>You don't have any notifications yet.</p>
-                <div class="divider"></div>
-            {{/each}}
-        </div>
-    {{/dropdown}}
+    <ul class="dropdown-menu">
+        {{#each notifications}}
+            <li><a href="{{link}}"><p>{{text}}</p></a></li>
+        {{else}}
+            <p>You don't have any notifications yet.</p>
+        {{/each}}
+    </ul>
 </template>
