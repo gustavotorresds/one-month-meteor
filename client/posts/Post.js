@@ -43,7 +43,7 @@ Template.Post.helpers({
 
 Template.Post.events({
     'click .comment-toggle': function(event, template) {
-        $('#new-comment-field').focus();
+        $(`#new-comment-field-${this._id}`).focus();
     },
     'click .like-toggle': function(event, template) {
         Meteor.call('like', this._id);

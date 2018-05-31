@@ -1,25 +1,19 @@
 <template name="NewComment">
-    <form class="new-comment row small-top-margin">
-        <div class="col-xs-10">
-            <input
-                id="new-comment-field"
-                type="text"
-                class="form-control input-field"
-                name="comment"
-                placeholder="Type a comment..."
-                autocomplete="off"
-            >
+    <form class="new-comment small-top-margin">
+        <div class="row ">
+            <div class="col-xs-10">
+                <input
+                    id="new-comment-field-{{postId}}"
+                    type="text"
+                    class="form-control input-field"
+                    name="comment"
+                    placeholder="Type a comment..."
+                    autocomplete="off"
+                >
+            </div>
+            <div class="col-xs-1">
+                <button type="submit" class="btn btn-default">Send</button>
+            </div>
         </div>
-        <button type="submit" class="btn col-xs-1">Send</button>
-        <!-- <div class="input-field">
-            <input
-                
-                
-                
-                class="materialize-textarea"
-                autocomplete="off"
-                
-            >
-        </div> -->
     </form>
 </template>

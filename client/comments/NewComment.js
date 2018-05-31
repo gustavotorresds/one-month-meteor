@@ -1,3 +1,9 @@
+Template.NewComment.helpers({
+    postId: function() {
+        return this.post._id;
+    }
+});
+
 Template.NewComment.events({
     'submit .new-comment': function(event) {
         event.preventDefault();
