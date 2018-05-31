@@ -28,18 +28,6 @@ AccountsTemplates.addFields([
         type: 'text',
         displayName: 'Name',
         required: true
-    },
-    {
-        _id: 'age',
-        type: 'text',
-        displayName: 'Age',
-        required: true
-    },
-    {
-        _id: 'city',
-        type: 'text',
-        displayName: 'City',
-        required: true
     }
 ]);
 
@@ -53,3 +41,4 @@ AccountsTemplates.configure({
 });
 
 AccountsTemplates.configureRoute('signIn');
+AccountsTemplates.configureRoute('signUp');

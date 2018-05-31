@@ -103,7 +103,7 @@ reactive-var@1.0.11
 reload@1.2.0
 retry@1.1.0
 routepolicy@1.0.13
-sergeyt:typeahead@0.11.1_9
+sergeyt:typeahead@1.2.0
 server-render@0.3.1
 service-configuration@1.0.11
 session@1.1.7

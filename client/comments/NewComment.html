@@ -1,6 +1,20 @@
 <template name="NewComment">
-    <form class="new-comment small-top-margin">
-        <div class="row ">
+    <form class="new-comment medium-top-margin">
+        <div class="input-group">
+            <input
+                id="new-comment-field-{{postId}}"
+                type="text"
+                class="form-control input-field"
+                name="comment"
+                placeholder="Type a comment..."
+                autocomplete="off"
+                describedby="basic-addon2"
+            >
+            <span type="submit" class="input-group-addon" id="basic-addon2">
+                <button class="btn">Enviar</button>
+            </span>
+        </div>
+        <!-- <div class="row ">
             <div class="col-xs-10">
                 <input
                     id="new-comment-field-{{postId}}"
@@ -14,6 +28,6 @@
             <div class="col-xs-1">
                 <button type="submit" class="btn btn-default">Send</button>
             </div>
-        </div>
+        </div> -->
     </form>
 </template>

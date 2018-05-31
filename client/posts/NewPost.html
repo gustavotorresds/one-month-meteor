@@ -1,10 +1,7 @@
 <template name="NewPost">
   <form id="newPost" class="panel panel-default newPost">
     <div class="panel-heading">
-        <!-- <div class="valign-wrapper user-header"> -->
-            <!-- {{> avatar userId=currentUser._id shape="circle" size="small"}} -->
-            <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
-        <!-- </div> -->
+        <span><a class="username" href="/users/{{author}}">{{authorUsername}}</a></span>
     </div>
 
     <div class="panel-body">
@@ -12,14 +9,9 @@
           <textarea name="text" class="form-control" placeholder="What's on your mind?"></textarea>
       </div>
       <span class="form-group">
-        <!-- <i class="fa fa-camera"></i> -->
         <input type="file" name="image" class="myFileInput">
       </span>
     </div>
-
-    <!-- <div class="card-image">
-      <img id="displayPostImage" class="responsive-img {{getFilter}}" src="{{getImage.url}}">
-    </div> -->
 
     <div class="panel-footer">
       <button type="submit" name="submit" class="btn btn-default">Submit</button>

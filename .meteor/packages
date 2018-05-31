@@ -34,8 +34,9 @@ useraccounts:core
 aldeed:autoform
 aldeed:collection2
 useraccounts:flow-routing
-sergeyt:typeahead
 utilities:avatar
 fortawesome:fontawesome
 useraccounts:bootstrap
 twbs:bootstrap
+softwarerero:accounts-t9n
+sergeyt:typeahead

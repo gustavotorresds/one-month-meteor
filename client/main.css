@@ -55,7 +55,6 @@ a.username {
     cursor: pointer;
 }
 
-.typeahead,
 .tt-query,
 .tt-hint {
   width: 396px;
@@ -66,14 +65,6 @@ a.username {
      -moz-border-radius: 8px;
           border-radius: 8px;
   outline: none;
-}
-
-.typeahead {
-  background-color: #fff;
-}
-
-.typeahead:focus {
-  border: 2px solid #0097cf;
 }
 
 .tt-query {
@@ -189,6 +180,21 @@ i.fa.fa-thumbs-o-up.liked {
   margin-top: 3px ;
 }
 
+.medium-top-margin {
+  margin-top: 10px ;
+}
+
+.large-bottom-margin {
+  margin-bottom: 30px ;
+}
+
 .avatar {
   display: inline-block;
+}
+
+.new-comment button {
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
