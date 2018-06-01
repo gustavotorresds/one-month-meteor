@@ -32,7 +32,6 @@ cfs:standard-packages
 cfs:gridfs
 useraccounts:core
 aldeed:autoform
-aldeed:collection2
 useraccounts:flow-routing
 utilities:avatar
 fortawesome:fontawesome
@@ -40,3 +39,6 @@ useraccounts:bootstrap
 twbs:bootstrap
 softwarerero:accounts-t9n
 sergeyt:typeahead
+fourseven:scss
+tmeasday:check-npm-versions
+aldeed:collection2-core@2.0.0

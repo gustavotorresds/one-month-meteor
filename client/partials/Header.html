@@ -16,14 +16,14 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        {{#if currentUserId}}
+        {{#if currentUser}}
           <form class="navbar-form navbar-left form-group">
             {{> Search}}
           </form>
         {{/if}}
 
         <ul class="nav navbar-nav navbar-right">
-          {{#if currentUserId}}
+          {{#if currentUser}}
             <li class="dropdown">{{> Notifications}}</li>
             <li>
               <a href="/users/{{currentUserId}}"><i class="fa fa-user"></i></a>
