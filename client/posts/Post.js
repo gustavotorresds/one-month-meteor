@@ -33,8 +33,9 @@ Template.Post.helpers({
     },
     // Refactor. It'd be best if this was inside post.
     imageInfo: function() {
-        var image = Images.findOne({_id: this.imageId});
-        return image;
+        // var image = Images.findOne({_id: this.imageId});
+        // console.log('IMAGE: ', image.url);
+        return this.image;
     },
     belongsToUser: function() {
         return this.author === Meteor.userId();

@@ -1,10 +1,15 @@
 <template name="Post">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span class="align-middle">
-                <!-- {{> avatar userId=author shape="circle" size="small"}} -->
-                <a class="username pull-top" href="/users/{{author}}">{{authorUsername}}</a>
-            </span>
+            <div class="row">
+                <div class="col-lg-1">
+                    <!-- {{> avatar userId=author shape="circle" size="small"}}     -->
+                </div>
+                <div class="col-lg-3">
+                    <div><a class="username pull-top" href="/users/{{author}}">{{authorUsername}}</a></div>
+                    <!-- <div>{{createdAt}}</div> -->
+                </div>
+            </div>
         </div>
             
         <div class="panel-body">
@@ -15,7 +20,7 @@
                 <img class="img-responsive" src="{{imageInfo.url}}">
             {{/if}}
 
-        <div class="panel-footer">
+        <div class="panel-body">
             <span class="clickable {{#if userLiked}}un{{/if}}like-toggle">
                 <i class="fa fa-heart{{#unless userLiked}}-o{{/unless}}"></i>{{likecount}}
             </span>

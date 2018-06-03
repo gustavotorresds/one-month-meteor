@@ -41,4 +41,9 @@ softwarerero:accounts-t9n
 sergeyt:typeahead
 fourseven:scss
 tmeasday:check-npm-versions
+alanning:roles
+aldeed:tabular@1.4.0
+dburles:collection-helpers
+matb33:collection-hooks
 aldeed:collection2-core@2.0.0
+edgee:slingshot

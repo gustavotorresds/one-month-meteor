@@ -15,6 +15,19 @@ Posts.allow({
     }
 });
 
+ImageSchema = new SimpleSchema({
+    id: {
+        type: String,
+        label: "Image ID",
+        optional: true
+    },
+    url: {
+        type: String,
+        label: "Image URL",
+        optional: true
+    }
+});
+
 PostSchema = new SimpleSchema({
     text: {
         type: String,
@@ -26,9 +39,8 @@ PostSchema = new SimpleSchema({
         optional: true,
         defaultValue: "none"
     },
-    imageId: {
-        type: String,
-        label: "Image ID",
+    image: {
+        type: ImageSchema,
         optional: true
     },
     author: {
@@ -56,10 +68,10 @@ PostSchema = new SimpleSchema({
 Posts.attachSchema(PostSchema);
 
 Meteor.methods({
-    insertPost: function(text, imageId, filter) {
+    insertPost: function(text, imageUrl, filter) {
         Posts.insert({
             text: text,
-            imageId: imageId,
+            image: {url: imageUrl},
             author: this.userId,
             filter: filter
         });
